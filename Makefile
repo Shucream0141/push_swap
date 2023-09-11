@@ -1,20 +1,21 @@
 NAME = plib.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRCS = plib/ft_atoi.c \
-	plib/ft_lstnew.c \
-	plib/ft_lstadd_front.c \
-	plib/ft_lstsize.c \
-	plib/ft_lstlast.c \
-	plib/ft_lstadd_back.c \
-	plib/ft_lstdelone.c \
-	plib/ft_lstclear.c \
-	plib/ft_lstiter.c \
-	plib/ft_lstmap.c \
+SRCS = ft_swap.c \
+	ft_stack.c \
+	ft_utils.c \
+	main.c \
+	ft_sort_three.c \
+	ft_sort_five.c
+
+EXE = exe
 
 OBJ = $(SRCS:.c=.o)
 
-all: $(NAME)
+all: $(NAME) $(EXE)
+
+$(EXE): $(NAME)
+	$(CC) $(CFLAGS) $< -o $@
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
