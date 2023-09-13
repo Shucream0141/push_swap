@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sendo <sendo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 12:34:58 by sendo             #+#    #+#             */
+/*   Updated: 2023/09/12 12:35:09 by sendo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -26,8 +38,8 @@ t_list				*back_to_Firstptr(t_list *lst);
 void				printstack(t_list *lst);
 int					*rank(int *lst, int arg_num, int max, int num);
 
-t_list	*ft_sort_three(t_list *lst);
-
+t_list				*ft_sort_three(t_list *lst);
+t_list				*ft_sort_five(t_list *lsta, t_list *lstb);
 
 #endif
 

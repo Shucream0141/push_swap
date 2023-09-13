@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sendo <sendo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 12:34:12 by sendo             #+#    #+#             */
+/*   Updated: 2023/09/13 13:59:17 by sendo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 //とりあえずスタックに入れるのはできた。途中でmallocに失敗したらそれまでを全部解放するために双方向にしとく、うーん複雑だし単方向で
@@ -33,32 +45,35 @@ int	main(int argc, char *argv[])
 	i = 0;
 	while (i < argc - 1)
 	{
-		printf("before sorting ;%d\n", sort[i]);
+		// printf("before sorting ;%d\n", sort[i]);
 		i++;
 	}
 	return_sort = rank(sort, argc - 1, 0, 0);
 	i = 0;
 	while (i < argc - 1)
 	{
-		printf("sort %d return_sort %d ",sort[i], return_sort[i]);
+		// printf("sort %d return_sort %d ",sort[i], return_sort[i]);
 		x = addlst(return_sort[i], x);
-		printf("value %d\n", x->value);
+		// printf("value %d\n", x->value);
 		i++;
 	}
 	x = back_to_Firstptr(x);
 	if (argc == 4)
 	{
 		x = ft_sort_three(x);
+		printstack(x);
 	}
-	x = back_to_Firstptr(x);
-	printstack(x);
-	// if (argc == 6)
-	// {
-	// 		x = ft_sort_five(x);
-	// }
+	// printstack(x);
+	// x = back_to_Firstptr(x);
+	// x = back_to_Firstptr(x);
+	if (argc == 6)
+	{
+		x = ft_sort_five(x,y);
+		// printf("今ここ");
+		// printstack(x);
+	}
 	// printf("swap\n");
 	// x = swapfirst(x);
-	// printstack(x);
 	// printf("rotate\n");
 	// x = rotationfirstlast(x);
 	// printstack(x);
@@ -66,3 +81,4 @@ int	main(int argc, char *argv[])
 	// x = reverse_rotate(x);
 	// printstack(x);
 }
+// printf("今ここ");

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sendo <sendo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 12:30:29 by sendo             #+#    #+#             */
+/*   Updated: 2023/09/13 12:12:02 by sendo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_list	*rotationfirstlast(t_list *lst)
@@ -37,7 +49,8 @@ t_list	*swapfirst(t_list *lst)
 	bef_first->prev = aft_first;
 	aft_first->prev = NULL;
 	aft_first->next = bef_first;
-	third->prev = bef_first;
+	if(third != NULL)
+		third->prev = bef_first;
 	printf("now...swap\n");
 	return (aft_first);
 }

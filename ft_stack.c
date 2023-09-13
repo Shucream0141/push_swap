@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_stack.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sendo <sendo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 12:34:01 by sendo             #+#    #+#             */
+/*   Updated: 2023/09/13 13:55:36 by sendo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_list	*addlst(int num, t_list *st)
@@ -27,24 +39,23 @@ t_list	*addlst(int num, t_list *st)
 
 t_list	*push_stack_a_to_b(t_list *lsta, t_list *lstb)
 {
-	t_list *ptr;
-
+	printf("now...push\n");
 	if (lsta == NULL)
 		return (NULL);
 	if (lstb == NULL)
 	{
 		lsta->next->prev = NULL;
-		// ptr = lsta->next; //次の先頭のやつを保存
 		lsta->next = NULL;
 		lsta->prev = NULL;
-		return (lsta); //次の先頭を返す
+		return (lsta); //aからbに渡した先頭のポインタを返す
 	}
 	else
 	{
-		lsta->next->prev = NULL;
+		if(lsta->next != NULL)
+			lsta->next->prev = NULL;
+		lsta->prev = NULL;
 		lsta->next = lstb;
 		lstb->prev = lsta;
-		lsta->prev = NULL;
-		return (lsta);
+		return (lsta);//aからbに渡した先頭のポインタを返す
 	}
-}
+}//こっちではlstbの先頭を示すに徹して、送った方が元の次のやつを保存しておけばいい
