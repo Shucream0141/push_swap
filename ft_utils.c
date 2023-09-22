@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sendo <sendo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shucream <shucream@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 12:33:55 by sendo             #+#    #+#             */
-/*   Updated: 2023/09/12 18:34:18 by sendo            ###   ########.fr       */
+/*   Updated: 2023/09/22 17:11:12 by shucream         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	*rank(int *lst, int arg_num, int max, int num)
 	while (j < arg_num)
 	{
 		i = 0;
-		max = 0;
+		max = INT_MIN;
 		while (i < arg_num)
 		{
 			if (max < lst[i])
@@ -35,7 +35,7 @@ int	*rank(int *lst, int arg_num, int max, int num)
 			}
 			i++;
 		}
-		lst[num] = -1;
+		lst[num] = INT_MIN;
 		sorted[num] = arg_num - j;
 		j++;
 	}
@@ -53,6 +53,17 @@ t_list *back_to_Firstptr(t_list *lst)
 		// printf("utils%p\n",lst);
     }
     return lst;
+}
+
+t_list *first_to_Lastptr(t_list *lst)
+{
+	if(lst == NULL)
+		return NULL;
+	while(lst->next != NULL)
+	{
+		lst = lst->next;
+	}
+	return lst;
 }
 
 void	printstack(t_list *lst)

@@ -1,15 +1,17 @@
 NAME = plib.a
 CC = cc
-CFLAGS = -g -fsanitize=address
-#  -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 SRCS = ft_swap.c \
 	ft_stack.c \
 	ft_utils.c \
 	main.c \
 	ft_sort_three.c \
-	ft_sort_five.c
+	ft_sort_five.c \
+	ft_sort_four.c \
+	ft_sort_six.c \
+	ft_algorithm.c
 
-EXE = exe
+EXE = push_swap
 
 OBJ = $(SRCS:.c=.o)
 

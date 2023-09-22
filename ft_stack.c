@@ -6,7 +6,7 @@
 /*   By: sendo <sendo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 12:34:01 by sendo             #+#    #+#             */
-/*   Updated: 2023/09/13 13:55:36 by sendo            ###   ########.fr       */
+/*   Updated: 2023/09/18 12:33:30 by sendo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,12 @@ t_list	*addlst(int num, t_list *st)
 	}
 }
 
-t_list	*push_stack_a_to_b(t_list *lsta, t_list *lstb)
+t_list	*push_stack_a_to_b(t_list *lsta, t_list *lstb, int flag)
 {
-	printf("now...push\n");
+	if(flag == 1)
+		printf("pa\n");
+	else if(flag == -1)
+		printf("pb\n");
 	if (lsta == NULL)
 		return (NULL);
 	if (lstb == NULL)

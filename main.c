@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sendo <sendo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shucream <shucream@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 12:34:12 by sendo             #+#    #+#             */
-/*   Updated: 2023/09/13 13:59:17 by sendo            ###   ########.fr       */
+/*   Updated: 2023/09/22 19:04:09 by shucream         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,45 +40,28 @@ int	main(int argc, char *argv[])
 	while (i < argc)
 	{
 		sort[i - 1] = atoi(argv[i]);
+		// printf("raaeturn %d\n",sort[i - 1]);
 		i++;
 	}
 	i = 0;
-	while (i < argc - 1)
-	{
-		// printf("before sorting ;%d\n", sort[i]);
-		i++;
-	}
 	return_sort = rank(sort, argc - 1, 0, 0);
-	i = 0;
 	while (i < argc - 1)
 	{
-		// printf("sort %d return_sort %d ",sort[i], return_sort[i]);
+		// printf("return %d\n",return_sort[i]);
 		x = addlst(return_sort[i], x);
-		// printf("value %d\n", x->value);
 		i++;
 	}
 	x = back_to_Firstptr(x);
+	// printstack(x);
 	if (argc == 4)
-	{
-		x = ft_sort_three(x);
-		printstack(x);
-	}
-	// printstack(x);
-	// x = back_to_Firstptr(x);
-	// x = back_to_Firstptr(x);
-	if (argc == 6)
-	{
-		x = ft_sort_five(x,y);
-		// printf("今ここ");
-		// printstack(x);
-	}
-	// printf("swap\n");
-	// x = swapfirst(x);
-	// printf("rotate\n");
-	// x = rotationfirstlast(x);
-	// printstack(x);
-	// printf("reverse rotate\n");
-	// x = reverse_rotate(x);
-	// printstack(x);
+		x = ft_sort_three(x,1);
+	else if( argc == 5)
+		x = ft_sort_four(x,y,1);
+	else if (argc == 6)
+		x = ft_sort_five(x,y,1);
+	else if (argc == 7)
+		x = ft_sort_six(x,y);
+	else
+		ft_algorithm(x,y,argc);
 }
 // printf("今ここ");
