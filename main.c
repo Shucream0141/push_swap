@@ -6,7 +6,7 @@
 /*   By: shucream <shucream@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 12:34:12 by sendo             #+#    #+#             */
-/*   Updated: 2023/09/22 19:04:09 by shucream         ###   ########.fr       */
+/*   Updated: 2023/09/22 19:42:35 by shucream         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,16 @@ int	main(int argc, char *argv[])
 	while (i < argc)
 	{
 		sort[i - 1] = atoi(argv[i]);
-		// printf("raaeturn %d\n",sort[i - 1]);
 		i++;
 	}
 	i = 0;
 	return_sort = rank(sort, argc - 1, 0, 0);
 	while (i < argc - 1)
 	{
-		// printf("return %d\n",return_sort[i]);
 		x = addlst(return_sort[i], x);
 		i++;
 	}
 	x = back_to_Firstptr(x);
-	// printstack(x);
 	if (argc == 4)
 		x = ft_sort_three(x,1);
 	else if( argc == 5)
