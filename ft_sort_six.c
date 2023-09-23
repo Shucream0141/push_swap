@@ -6,17 +6,16 @@
 /*   By: shucream <shucream@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:16:45 by sendo             #+#    #+#             */
-/*   Updated: 2023/09/22 18:59:45 by shucream         ###   ########.fr       */
+/*   Updated: 2023/09/23 23:27:12 by shucream         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list *ft_sort_six(t_list *lsta,t_list *lstb)
+t_list *ft_send_half(t_list *lsta,t_list *lstb)
 {
 	int i;
 	t_list *ptr;
-
 	i = 0;
 	while(lsta != NULL)
 	{
@@ -36,6 +35,21 @@ t_list *ft_sort_six(t_list *lsta,t_list *lstb)
 			lsta = rotationfirstlast(lsta,1);
 		}
 	}
+	return lstb;
+}
+
+t_list *ft_sort_six(t_list *lsta,t_list *lstb)
+{
+	t_list *ptr;
+
+	while(lsta->next != NULL && lsta->value != 6)
+	{
+		lsta = lsta->next;
+		ptr = lsta;
+	}
+	lsta = back_to_Firstptr(ptr);
+	lstb = ft_send_half(lsta,lstb);
+	lsta = back_to_Firstptr(ptr);
 	lsta = ft_sort_three(lsta,1);
 	lstb = ft_sort_three(lstb,-1);
 	lstb = swapfirst(lstb,-1);

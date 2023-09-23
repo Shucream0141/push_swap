@@ -6,7 +6,7 @@
 /*   By: shucream <shucream@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 12:34:58 by sendo             #+#    #+#             */
-/*   Updated: 2023/09/22 18:59:58 by shucream         ###   ########.fr       */
+/*   Updated: 2023/09/23 23:28:18 by shucream         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,14 @@ t_list				*addlst(int num, t_list *st);
 t_list				*back_to_Firstptr(t_list *lst);
 t_list				*first_to_Lastptr(t_list *lst);
 
+t_list *ft_send_two(t_list *lsta, t_list *lstb, int mid);
 void				printstack(t_list *lst);
 int					*rank(int *lst, int arg_num, int max, int num);
+void ft_freeall(t_list *lsta,t_list *lstb);
 
 t_list				*ft_sort_three(t_list *lst, int flag);
-t_list				*ft_sort_five(t_list *lsta, t_list *lstb, int flag);
-t_list				*ft_sort_four(t_list *lsta, t_list *lstb, int flag);
+t_list				*ft_sort_five(t_list *lsta, t_list *lstb);
+t_list				*ft_sort_four(t_list *lsta, t_list *lstb);
 t_list				*ft_sort_six(t_list *lsta, t_list *lstb);
 t_list				*ft_algorithm(t_list *lsta, t_list *lstb, int argc);
 

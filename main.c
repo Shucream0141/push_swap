@@ -6,7 +6,7 @@
 /*   By: shucream <shucream@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 12:34:12 by sendo             #+#    #+#             */
-/*   Updated: 2023/09/22 19:42:35 by shucream         ###   ########.fr       */
+/*   Updated: 2023/09/23 23:28:48 by shucream         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	main(int argc, char *argv[])
 	int		i;
 
 	sort = (int *)malloc(argc * sizeof(int));
+	if(sort == NULL)
+		return 1;
 	x = NULL;
 	y = NULL;
 	i = 1;
@@ -49,13 +51,14 @@ int	main(int argc, char *argv[])
 		x = addlst(return_sort[i], x);
 		i++;
 	}
+	free(return_sort);
 	x = back_to_Firstptr(x);
 	if (argc == 4)
 		x = ft_sort_three(x,1);
 	else if( argc == 5)
-		x = ft_sort_four(x,y,1);
+		x = ft_sort_four(x,y);
 	else if (argc == 6)
-		x = ft_sort_five(x,y,1);
+		x = ft_sort_five(x,y);
 	else if (argc == 7)
 		x = ft_sort_six(x,y);
 	else

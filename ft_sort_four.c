@@ -3,27 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sort_four.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sendo <sendo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shucream <shucream@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 14:32:08 by sendo             #+#    #+#             */
-/*   Updated: 2023/09/18 12:38:48 by sendo            ###   ########.fr       */
+/*   Updated: 2023/09/23 23:32:03 by shucream         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-int	find_third_infour(t_list *lsta)
+void copy_value_four(t_list *lsta,int *sort)
 {
-	int	*sort;
-	int	*return_sort;
-	int	i;
+	int i;
 
 	i = 0;
-	sort = (int *)malloc(4 * sizeof(int));
-	return_sort = (int *)malloc(4 * sizeof(int));
-	if (sort == NULL)
-		return (-1);
 	while (i < 4 && lsta != NULL)
 	{
 		sort[i] = lsta->value;
@@ -32,9 +25,27 @@ int	find_third_infour(t_list *lsta)
 			break ;
 		lsta = lsta->next;
 	}
-	lsta = back_to_Firstptr(lsta);
-	return_sort = rank(sort, i, 0, 0);
+}
+
+int	find_third_infour(t_list *lsta,t_list *lstb)
+{
+	int	*sort;
+	int	*return_sort;
+	int	i;
+
 	i = 0;
+	sort = (int *)malloc(4 * sizeof(int));
+	return_sort = (int *)malloc(4 * sizeof(int));
+	if(sort == NULL || return_sort == NULL)
+	{
+		ft_freeall(lsta,lstb);
+		free(sort);
+		free(return_sort);
+		exit(1);
+	}
+	copy_value_four(lsta,sort);
+	lsta = back_to_Firstptr(lsta);
+	return_sort = rank(sort, 4, 0, 0);
 	while (i < 4 && lsta != NULL)
 	{
 		if (return_sort[i] == 2)
@@ -45,20 +56,18 @@ int	find_third_infour(t_list *lsta)
 	return (0);
 }
 
-t_list *ft_sort_four(t_list *lsta, t_list *lstb,int flag)
+t_list *ft_send_f(t_list *lsta, t_list *lstb, int a)
 {
-	int i;
-	int a;
-
 	t_list *ptr;
+	int i;
+
 	i = 0;
-	a = find_third_infour(lsta);
 	while(lsta != NULL)
 	{
 		if(lsta->value <= a)
 		{
 			ptr = lsta->next;
-			lstb = push_stack_a_to_b(lsta,lstb,flag*(-1));
+			lstb = push_stack_a_to_b(lsta,lstb,-1);
 			lsta = ptr;
 			i++;
 			if(i == 2 || ptr == NULL)
@@ -68,17 +77,34 @@ t_list *ft_sort_four(t_list *lsta, t_list *lstb,int flag)
 		{
 			if (lsta->next == NULL)
 				break ;
-			lsta = rotationfirstlast(lsta,flag);
+			lsta = rotationfirstlast(lsta,1);
 		}
 	}
+	return lstb;
+}
+t_list *ft_sort_four(t_list *lsta, t_list *lstb)
+{
+	int a;
+	t_list *ptr;
+
+	ptr = lsta;
+	while(lsta->next != NULL && lsta->value != 4)
+	{
+		lsta = lsta->next;
+		ptr = lsta;
+	}
+	lsta = back_to_Firstptr(ptr);
+	a = find_third_infour(lsta,lstb);
+	lstb = ft_send_f(lsta,lstb,a);
+	lsta = back_to_Firstptr(ptr);
 	if (lstb->value < lstb->next->value)
-		lstb = swapfirst(lstb,flag*(-1));
+		lstb = swapfirst(lstb,-1);
 	if (lsta->value > lsta->next->value)
-		lsta = swapfirst(lsta,flag);
+		lsta = swapfirst(lsta,1);
 	while (lstb != NULL)
 	{
 		ptr = lstb->next;
-		lsta = push_stack_a_to_b(lstb, lsta,flag);
+		lsta = push_stack_a_to_b(lstb, lsta,1);
 		lstb = ptr;
 	}
 	return (lsta);

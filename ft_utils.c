@@ -6,7 +6,7 @@
 /*   By: shucream <shucream@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 12:33:55 by sendo             #+#    #+#             */
-/*   Updated: 2023/09/22 17:11:12 by shucream         ###   ########.fr       */
+/*   Updated: 2023/09/23 18:31:00 by shucream         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ int	*rank(int *lst, int arg_num, int max, int num)
 	j = 0;
 	sorted = (int *)malloc(arg_num * sizeof(int));
 	if (sorted == NULL)
-		return (NULL);
+	{
+		free(lst);
+		exit(1);
+	}
 	while (j < arg_num)
 	{
 		i = 0;
@@ -42,6 +45,23 @@ int	*rank(int *lst, int arg_num, int max, int num)
 	return (sorted);
 }
 
+void ft_freeall(t_list *lsta,t_list *lstb)
+{
+	t_list *ptr;
+	
+	while(lsta != NULL)
+	{
+		ptr = lsta->next;
+		free(lsta);
+		lsta = ptr;
+	}
+	while(lstb != NULL)
+	{
+		ptr = lstb->next;
+		free(lstb);
+		lstb = ptr;
+	}
+}
 
 t_list *back_to_Firstptr(t_list *lst)
 {

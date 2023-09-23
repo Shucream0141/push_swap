@@ -6,7 +6,7 @@
 /*   By: shucream <shucream@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:27:57 by sendo             #+#    #+#             */
-/*   Updated: 2023/09/23 15:00:50 by shucream         ###   ########.fr       */
+/*   Updated: 2023/09/23 23:36:13 by shucream         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ t_list	*ft_algorithm(t_list *lsta, t_list *lstb, int argc)
 {
 	t_list	*ptr;
 
+	ptr = lsta;
 	while(lsta->next != NULL && lsta->value != argc - 1)
 	{
 		lsta = lsta->next;
@@ -140,12 +141,13 @@ t_list	*ft_algorithm(t_list *lsta, t_list *lstb, int argc)
 	lsta = back_to_Firstptr(ptr);
 	while (1)
 	{
-			lstb = ft_judgenum(lsta,lstb,lsta->value);
-			lsta = back_to_Firstptr(lsta);
+		lstb = ft_judgenum(lsta,lstb,lsta->value);
+		lsta = back_to_Firstptr(lsta);
 		if (lstb == NULL || ptr->value - lsta->value == argc -1)
 			break ;
 	}
-	return (lsta);
+	ft_freeall(lsta,lstb);
+	return NULL;
 }
 
 
