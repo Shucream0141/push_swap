@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_algorithm.c                                     :+:      :+:    :+:   */
+/*   ft_algorithm_seven.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sendo <sendo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/13 16:27:57 by sendo             #+#    #+#             */
-/*   Updated: 2023/09/25 16:25:09 by sendo            ###   ########.fr       */
+/*   Created: 2023/09/25 17:28:57 by sendo             #+#    #+#             */
+/*   Updated: 2023/09/25 17:34:36 by sendo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*ft_push1(t_list *lsta, t_list *lstb, int flag)
+t_list	*ft_push1_seven(t_list *lsta, t_list *lstb, int flag)
 {
 	int		breakman;
 	t_list	*ptr;
@@ -40,7 +40,7 @@ t_list	*ft_push1(t_list *lsta, t_list *lstb, int flag)
 	}
 }
 
-t_list	*ft_judgenum(t_list *lsta, t_list *lstb, int value)
+t_list	*ft_judgenums(t_list *lsta, t_list *lstb, int value)
 {
 	int		i;
 	int		j;
@@ -62,14 +62,14 @@ t_list	*ft_judgenum(t_list *lsta, t_list *lstb, int value)
 	}
 	lstb = ptr;
 	if (i < j)
-		return (ft_push1(lsta, lstb, 1));
+		return (ft_push1_seven(lsta, lstb, 1));
 	else if (i > j)
-		return (ft_push1(lsta, lstb, -1));
+		return (ft_push1_seven(lsta, lstb, -1));
 	else
-		return (ft_push1(lsta, lstb, 0));
+		return (ft_push1_seven(lsta, lstb, 0));
 }
 
-t_list	*ft_send_stackl(t_list *lsta, t_list *lstb, int argc)
+t_list	*ft_send_stackl_seven(t_list *lsta, t_list *lstb, int argc)
 {
 	t_list	*ptr;
 	int		i;
@@ -96,25 +96,25 @@ t_list	*ft_send_stackl(t_list *lsta, t_list *lstb, int argc)
 	return (lstb);
 }
 
-t_list	*ft_send_stack(t_list *lsta, t_list *lstb, int argc, int j)
+t_list	*ft_send_stack_seven(t_list *lsta, t_list *lstb, int argc, int j)
 {
 	t_list	*ptr;
 	int		i;
 
 	i = 0;
-	while (j < 9)
+	while (j < 8)
 	{
 		while (lsta != NULL)
 		{
 			if (lsta->next == NULL)
 				break ;
-			if (lsta->value <= (j * argc) / 9)
+			if (lsta->value <= (j * argc) / 8)
 			{
 				ptr = lsta->next;
 				lstb = push_stack_a_to_b(lsta, lstb, -1);
 				lsta = ptr;
 				i++;
-				if (i == (j * argc) / 9 || ptr == NULL)
+				if (i == (j * argc) / 8 || ptr == NULL)
 					break ;
 			}
 			else
@@ -122,10 +122,10 @@ t_list	*ft_send_stack(t_list *lsta, t_list *lstb, int argc, int j)
 		}
 		j++;
 	}
-	return (ft_send_stackl(lsta, lstb, argc));
+	return (ft_send_stackl_seven(lsta, lstb, argc));
 }
 
-t_list	*ft_algorithm(t_list *lsta, t_list *lstb, int argc)
+t_list	*ft_algorithm_seven(t_list *lsta, t_list *lstb, int argc)
 {
 	t_list	*ptr;
 
@@ -136,11 +136,11 @@ t_list	*ft_algorithm(t_list *lsta, t_list *lstb, int argc)
 		ptr = lsta;
 	}
 	lsta = back_to_firstptr(ptr);
-	lstb = ft_send_stack(lsta, lstb, argc, 1);
+	lstb = ft_send_stack_seven(lsta, lstb, argc, 1);
 	lsta = back_to_firstptr(ptr);
 	while (1)
 	{
-		lstb = ft_judgenum(lsta, lstb, lsta->value);
+		lstb = ft_judgenums(lsta, lstb, lsta->value);
 		lsta = back_to_firstptr(lsta);
 		if (lstb == NULL || ptr->value - lsta->value == argc - 1)
 			break ;

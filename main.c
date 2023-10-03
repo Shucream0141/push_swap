@@ -3,65 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shucream <shucream@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sendo <sendo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 12:34:12 by sendo             #+#    #+#             */
-/*   Updated: 2023/09/23 23:28:48 by shucream         ###   ########.fr       */
+/*   Updated: 2023/10/03 20:39:14 by sendo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//とりあえずスタックに入れるのはできた。途中でmallocに失敗したらそれまでを全部解放するために双方向にしとく、うーん複雑だし単方向で
-//次に必要なのは、
-//一連の流れは、スタックにぶちこむ、操作をする。その結果ソートされている。
-//だから次は操作が必要。操作を作ろう。常にリストの始めの部分にポインタがあるように設定する。
-//操作は多分ほぼできてる。問題はどうやってソートしていくか
-//問題は最終的な概形というか順番を事前に知っているかどうか、毎回同時に判断してソート移動させるのは流石に荷が重すぎるから判断は別でいいと思う、毎回やってたら計算量も時間かかりすぎるし
-//構造体にフラグというか順番みたいなのを導入して、最初に二重配列にして動かす。
-//
-
-//与えた数字列の大きさを判定するrank関数を作りたい。作った。これをvalueに入れる。
-//valueで順番はわかった。次に必要なのは仕分け方、分割するほどソートの手間がなくなるのだから、まずは大きさの順番の中央値より大きいか小さいかで分ける。
-//
-
 int	main(int argc, char *argv[])
 {
-	t_list	*x;
-	t_list	*y;
-	int		*return_sort;
-	int		*sort;
-	int		i;
-
-	sort = (int *)malloc(argc * sizeof(int));
-	if(sort == NULL)
-		return 1;
-	x = NULL;
-	y = NULL;
-	i = 1;
-	while (i < argc)
+	if (argc == 1 || argc == 2)
 	{
-		sort[i - 1] = atoi(argv[i]);
-		i++;
+		ft_printf("Error");
+		return (1);
 	}
-	i = 0;
-	return_sort = rank(sort, argc - 1, 0, 0);
-	while (i < argc - 1)
-	{
-		x = addlst(return_sort[i], x);
-		i++;
-	}
-	free(return_sort);
-	x = back_to_Firstptr(x);
-	if (argc == 4)
-		x = ft_sort_three(x,1);
-	else if( argc == 5)
-		x = ft_sort_four(x,y);
-	else if (argc == 6)
-		x = ft_sort_five(x,y);
-	else if (argc == 7)
-		x = ft_sort_six(x,y);
-	else
-		ft_algorithm(x,y,argc);
+	return (ft_deal_args(argc, argv));
 }
-// printf("今ここ");

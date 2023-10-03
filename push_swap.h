@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shucream <shucream@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sendo <sendo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 12:34:58 by sendo             #+#    #+#             */
-/*   Updated: 2023/09/23 23:28:18 by shucream         ###   ########.fr       */
+/*   Updated: 2023/10/03 20:39:24 by sendo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include "./printf/ft_printf.h"
 # include <limits.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -32,41 +33,25 @@ t_list				*rotate_a_and_b(t_list *lsta, t_list *lstb);
 t_list				*reverse_rotate(t_list *lsta, int flag);
 t_list				*push_stack_a_to_b(t_list *lsta, t_list *lstb, int flag);
 t_list				*addlst(int num, t_list *st);
-t_list				*back_to_Firstptr(t_list *lst);
-t_list				*first_to_Lastptr(t_list *lst);
+t_list				*back_to_firstptr(t_list *lst);
+t_list				*first_to_lastptr(t_list *lst);
 
-t_list *ft_send_two(t_list *lsta, t_list *lstb, int mid);
+t_list				*ft_send_two(t_list *lsta, t_list *lstb, int mid);
 void				printstack(t_list *lst);
-int					*rank(int *lst, int arg_num, int max, int num);
-void ft_freeall(t_list *lsta,t_list *lstb);
 
 t_list				*ft_sort_three(t_list *lst, int flag);
 t_list				*ft_sort_five(t_list *lsta, t_list *lstb);
 t_list				*ft_sort_four(t_list *lsta, t_list *lstb);
 t_list				*ft_sort_six(t_list *lsta, t_list *lstb);
 t_list				*ft_algorithm(t_list *lsta, t_list *lstb, int argc);
+t_list				*ft_algorithm_seven(t_list *lsta, t_list *lstb, int argc);
 
-t_list	*ft_pushfive(t_list *lsta, t_list *lstb, int value,t_list *lptr);
+void				ft_freeall(t_list *lsta, t_list *lstb);
+int					*rank(int *lst, int arg_num, int max, int num);
+int					ft_advanced_atoi(const char *str, int *sort);
+int					ft_isdouble_error(int *sort, int argc);
+int					ft_is_sorted(t_list *lsta, t_list *lstb);
+int					ft_deal_args(int argc, char **argv);
+
+int					ft_printf(const char *str, ...);
 #endif
-
-/*
-sa (swap a): Swap the first 2 elements at the top of stack a.//Done
-Do nothing if there is only one or no elements.
-sb (swap b): Swap the first 2 elements at the top of stack b.//Done
-Do nothing if there is only one or no elements.
-ss : sa and sb at the same time.							//Done
-pa (push a): Take the first element at the top of b and put it at the top of a.//Done
-Do nothing if b is empty.
-pb (push b): Take the first element at the top of a and put it at the top of b.//Done
-Do nothing if a is empty.
-ra (rotate a): Shift up all elements of stack a by 1.//Done
-The first element becomes the last one.
-rb (rotate b): Shift up all elements of stack b by 1.??Done
-The first element becomes the last one.
-rr : ra and rb at the same time. //Done
-rra (reverse rotate a): Shift down all elements of stack a by 1. //done
-The last element becomes the first one.
-rrb (reverse rotate b): Shift down all elements of stack b by 1. //done
-The last element becomes the first one.
-rrr : rra and rrb at the same time. //Yet
-*/

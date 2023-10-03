@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_stack.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shucream <shucream@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sendo <sendo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 12:34:01 by sendo             #+#    #+#             */
-/*   Updated: 2023/09/23 18:19:27 by shucream         ###   ########.fr       */
+/*   Updated: 2023/10/03 20:42:06 by sendo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 t_list	*addlst(int num, t_list *st)
 {
-	t_list *ptr = st; //これを使ってallfreeする。
+	t_list	*ptr;
+
+	ptr = st;
 	if (st == NULL)
 	{
 		st = malloc(sizeof(t_list));
@@ -29,7 +31,7 @@ t_list	*addlst(int num, t_list *st)
 	{
 		st->next = malloc(sizeof(t_list));
 		if (st == NULL)
-			return (NULL); //ここでptrを使って全部freeしていく予定
+			return (NULL);
 		st->next->value = num;
 		st->next->next = NULL;
 		st->next->prev = ptr;
@@ -39,10 +41,10 @@ t_list	*addlst(int num, t_list *st)
 
 t_list	*push_stack_a_to_b(t_list *lsta, t_list *lstb, int flag)
 {
-	if(flag == 1)
-		printf("pa\n");
-	else if(flag == -1)
-		printf("pb\n");
+	if (flag == 1)
+		ft_printf("pa\n");
+	else if (flag == -1)
+		ft_printf("pb\n");
 	if (lsta == NULL)
 		return (NULL);
 	if (lstb == NULL)
@@ -50,15 +52,16 @@ t_list	*push_stack_a_to_b(t_list *lsta, t_list *lstb, int flag)
 		lsta->next->prev = NULL;
 		lsta->next = NULL;
 		lsta->prev = NULL;
-		return (lsta); //aからbに渡した先頭のポインタを返す
+		return (lsta);
 	}
 	else
 	{
-		if(lsta->next != NULL)
+		if (lsta->next != NULL)
 			lsta->next->prev = NULL;
 		lsta->prev = NULL;
 		lsta->next = lstb;
 		lstb->prev = lsta;
-		return (lsta);//aからbに渡した先頭のポインタを返す
+		return (lsta);
 	}
-}//こっちではlstbの先頭を示すに徹して、送った方が元の次のやつを保存しておけばいい
+}
+//こっちではlstbの先頭を示すに徹して、送った方が元の次のやつを保存しておけばいい
