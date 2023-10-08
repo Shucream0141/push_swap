@@ -6,7 +6,7 @@
 /*   By: sendo <sendo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 12:34:12 by sendo             #+#    #+#             */
-/*   Updated: 2023/10/08 15:45:28 by sendo            ###   ########.fr       */
+/*   Updated: 2023/10/08 20:04:16 by sendo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 
 int	main(int argc, char *argv[])
 {
-	if (argc == 1 || argc == 2)
-		return (1);
+	if (argc == 1)
+		return (0);
 	ft_freeall(ft_deal_args(argc, argv), NULL);
 	return (0);
 }

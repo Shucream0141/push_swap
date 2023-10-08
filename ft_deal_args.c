@@ -6,7 +6,7 @@
 /*   By: sendo <sendo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 18:25:47 by shucream          #+#    #+#             */
-/*   Updated: 2023/10/08 18:05:27 by sendo            ###   ########.fr       */
+/*   Updated: 2023/10/08 19:33:25 by sendo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ t_list	*ft_sort_two(t_list *lst)
 
 t_list	*ft_deal_argc(t_list *lst, int argc)
 {
+	if (lst == NULL)
+		return (NULL);
 	lst = back_to_firstptr(lst);
 	ft_is_sorted(lst, NULL);
 	if (argc == 3)
@@ -50,21 +52,27 @@ t_list	*ft_deal_args(int argc, char **argv)
 	sort = (int *)malloc(argc * sizeof(int));
 	if (sort == NULL)
 		return (NULL);
-	i = 1;
-	while (i < argc)
-	{
+	i = 0;
+	while (i++ < argc - 1)
 		sort[i - 1] = ft_advanced_atoi(argv[i], sort);
-		i++;
-	}
 	ft_isdouble_error(sort, argc);
 	return_sort = rank(sort, argc - 1, 0, 0);
-	free(sort);
 	i = 0;
 	while (i < argc - 1)
 	{
 		x = addlst(return_sort[i], x);
+		if (x == NULL)
+			break ;
 		i++;
 	}
-	free(return_sort);
+	double_free(sort, return_sort);
 	return (ft_deal_argc(x, argc));
 }
+
+	// i = 1;
+	// while (i < argc)
+	// {
+	// 	printf("%d\n",i);
+	// 	sort[i - 1] = ft_advanced_atoi(argv[i], sort);
+	// 	i++;
+	// }

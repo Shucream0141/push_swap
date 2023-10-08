@@ -6,23 +6,23 @@
 /*   By: sendo <sendo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:26:46 by sendo             #+#    #+#             */
-/*   Updated: 2023/10/08 16:01:25 by sendo            ###   ########.fr       */
+/*   Updated: 2023/10/08 18:12:46 by sendo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <limits.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-# include <limits.h>
 
 typedef struct s_list
 {
 	void			*content;
-	int					value;
+	int				value;
 	struct s_list	*next;
 	struct s_list	*prev;
 }					t_list;

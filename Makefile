@@ -1,11 +1,10 @@
 NAME = plib.a
 CC = cc
-CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 SRCS = ft_swap.c \
 	ft_stack.c \
 	ft_utils.c \
 	ft_util.c \
-	ft_split.c \
 	main.c \
 	ft_sort_three.c \
 	ft_sort_five.c \
