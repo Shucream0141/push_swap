@@ -1,9 +1,11 @@
 NAME = plib.a
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
 SRCS = ft_swap.c \
 	ft_stack.c \
 	ft_utils.c \
+	ft_util.c \
+	ft_split.c \
 	main.c \
 	ft_sort_three.c \
 	ft_sort_five.c \
@@ -14,7 +16,8 @@ SRCS = ft_swap.c \
 	ft_deal_args.c \
 	ft_algorithm_seven.c
 
-LIB = printf/libftprintf.a
+LIB = printf/libftprintf.a \
+	libft/libft.a
 
 EXE = push_swap
 
@@ -31,16 +34,19 @@ $(EXE): $(NAME) $(LIB)
 
 $(LIB):
 	make -C printf
+	make -C libft
 $(NAME): $(OBJ)
 	ar -rc $(NAME) $(OBJ)
 
 clean:
 	$(RM) $(OBJ)
 	make -C printf clean
+	make -C libft clean
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(EXE)
 	make -C printf fclean
+	make -C libft fclean
 
 re: fclean all
 

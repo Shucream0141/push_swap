@@ -6,7 +6,7 @@
 /*   By: sendo <sendo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 12:34:01 by sendo             #+#    #+#             */
-/*   Updated: 2023/10/03 20:42:06 by sendo            ###   ########.fr       */
+/*   Updated: 2023/10/06 19:20:16 by sendo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_list	*addlst(int num, t_list *st)
 	{
 		st = malloc(sizeof(t_list));
 		if (st == NULL)
-			return (NULL);
+			return (ft_freeall(ptr, NULL));
 		st->value = num;
 		st->next = NULL;
 		st->prev = NULL;
@@ -30,8 +30,8 @@ t_list	*addlst(int num, t_list *st)
 	else
 	{
 		st->next = malloc(sizeof(t_list));
-		if (st == NULL)
-			return (NULL);
+		if (st->next == NULL)
+			return (ft_freeall(ptr, NULL));
 		st->next->value = num;
 		st->next->next = NULL;
 		st->next->prev = ptr;

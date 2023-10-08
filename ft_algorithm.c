@@ -6,7 +6,7 @@
 /*   By: sendo <sendo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:27:57 by sendo             #+#    #+#             */
-/*   Updated: 2023/09/25 16:25:09 by sendo            ###   ########.fr       */
+/*   Updated: 2023/10/08 12:30:53 by sendo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,5 @@ t_list	*ft_algorithm(t_list *lsta, t_list *lstb, int argc)
 		if (lstb == NULL || ptr->value - lsta->value == argc - 1)
 			break ;
 	}
-	ft_freeall(lsta, lstb);
-	return (NULL);
+	return (lsta);
 }

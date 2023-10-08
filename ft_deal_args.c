@@ -6,7 +6,7 @@
 /*   By: sendo <sendo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 18:25:47 by shucream          #+#    #+#             */
-/*   Updated: 2023/10/03 20:41:58 by sendo            ###   ########.fr       */
+/*   Updated: 2023/10/08 18:05:27 by sendo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,10 @@ t_list	*ft_sort_two(t_list *lst)
 	return (lst);
 }
 
-int	ft_deal_argc(t_list *lst, int argc)
+t_list	*ft_deal_argc(t_list *lst, int argc)
 {
 	lst = back_to_firstptr(lst);
 	ft_is_sorted(lst, NULL);
-	if (argc == 2)
-	{
-		ft_freeall(lst, NULL);
-		ft_printf("error2");
-		exit(1);
-	}
 	if (argc == 3)
 		lst = ft_sort_two(lst);
 	else if (argc == 4)
@@ -43,10 +37,10 @@ int	ft_deal_argc(t_list *lst, int argc)
 		lst = ft_algorithm_seven(lst, NULL, argc);
 	else
 		lst = ft_algorithm(lst, NULL, argc);
-	return (0);
+	return (lst);
 }
 
-int	ft_deal_args(int argc, char **argv)
+t_list	*ft_deal_args(int argc, char **argv)
 {
 	int		*return_sort;
 	int		*sort;
@@ -55,7 +49,7 @@ int	ft_deal_args(int argc, char **argv)
 
 	sort = (int *)malloc(argc * sizeof(int));
 	if (sort == NULL)
-		return (1);
+		return (NULL);
 	i = 1;
 	while (i < argc)
 	{

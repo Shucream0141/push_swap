@@ -6,7 +6,7 @@
 /*   By: sendo <sendo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 23:46:21 by shucream          #+#    #+#             */
-/*   Updated: 2023/10/03 20:41:46 by sendo            ###   ########.fr       */
+/*   Updated: 2023/10/08 15:42:03 by sendo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@ int	ft_is_sorted(t_list *lsta, t_list *lstb)
 		lsta = lsta->next;
 	if (lsta->next == NULL)
 	{
-		ft_printf("error sort\n");
 		ft_freeall(lsta, lstb);
-		exit(1);
+		exit(0);
 	}
 	return (0);
 }
@@ -45,7 +44,7 @@ int	ft_isdouble_error(int *sort, int argc)
 		{
 			if (sort[i] == sort[i + j])
 			{
-				ft_printf("error double\n");
+				write(2, "Error\n", 6);
 				free(sort);
 				exit(1);
 			}
@@ -56,26 +55,30 @@ int	ft_isdouble_error(int *sort, int argc)
 	return (0);
 }
 
-static int	over(long *num, int count)
+static int	over(long num)
 {
-	if (count == 0 && (*num > INT_MAX))
-	{
-		*num = LONG_MAX;
+	if (num > INT_MAX || num < INT_MIN)
 		return (1);
-	}
-	else if (count == 1 && (*num < INT_MIN || *num > INT_MAX))
-	{
-		*num = LONG_MIN;
-		return (1);
-	}
 	return (0);
 }
 
-void	ft_exit_print(int *sort)
+int	ft_check_str_l(const char *str, int *sort, int count)
 {
-	ft_printf("erro atoir\n");
-	free(sort);
-	exit(1);
+	long	num;
+
+	num = 0;
+	if (*str == '\0')
+		ft_exit_print(sort);
+	while (*str >= '0' && *str <= '9')
+	{
+		num = num * 10 + *str - '0';
+		if (over(num) == 1)
+			ft_exit_print(sort);
+		str++;
+	}
+	if (*str != '\0' || count > 1)
+		ft_exit_print(sort);
+	return (num);
 }
 
 int	ft_advanced_atoi(const char *str, int *sort)
@@ -93,15 +96,7 @@ int	ft_advanced_atoi(const char *str, int *sort)
 			count++;
 		str++;
 	}
-	while (*str >= '0' && *str <= '9')
-	{
-		if (over(&num, count) == 1)
-			ft_exit_print(sort);
-		num = num * 10 + *str - '0';
-		str++;
-	}
-	if (*str != '\0' || count > 1)
-		ft_exit_print(sort);
+	num = ft_check_str_l(str, sort, count);
 	if (count == 1)
 		num *= -1;
 	return (num);

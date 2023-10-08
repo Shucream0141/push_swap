@@ -6,7 +6,7 @@
 /*   By: sendo <sendo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 14:32:08 by sendo             #+#    #+#             */
-/*   Updated: 2023/09/25 12:29:02 by sendo            ###   ########.fr       */
+/*   Updated: 2023/10/08 12:29:18 by sendo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,10 @@ int	find_third_infour(t_list *lsta, t_list *lstb)
 
 	i = 0;
 	sort = (int *)malloc(4 * sizeof(int));
-	return_sort = (int *)malloc(4 * sizeof(int));
-	if (sort == NULL || return_sort == NULL)
+	if (sort == NULL)
 	{
 		ft_freeall(lsta, lstb);
-		free(sort);
-		free(return_sort);
+		double_free(sort, NULL);
 		exit(1);
 	}
 	copy_value_four(lsta, sort);
@@ -49,11 +47,12 @@ int	find_third_infour(t_list *lsta, t_list *lstb)
 	while (i < 4 && lsta != NULL)
 	{
 		if (return_sort[i] == 2)
-			return (lsta->value);
+			break ;
 		i++;
 		lsta = lsta->next;
 	}
-	return (0);
+	double_free(sort, return_sort);
+	return (lsta->value);
 }
 
 t_list	*ft_send_f(t_list *lsta, t_list *lstb, int a)

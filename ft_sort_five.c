@@ -6,7 +6,7 @@
 /*   By: sendo <sendo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 15:32:38 by sendo             #+#    #+#             */
-/*   Updated: 2023/09/25 12:28:34 by sendo            ###   ########.fr       */
+/*   Updated: 2023/10/08 12:30:14 by sendo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,10 @@ int	find_third_infive(t_list *lsta, t_list *lstb)
 
 	i = 0;
 	sort = (int *)malloc(5 * sizeof(int));
-	return_sort = (int *)malloc(5 * sizeof(int));
-	if (sort == NULL || return_sort == NULL)
+	if (sort == NULL)
 	{
 		ft_freeall(lsta, lstb);
-		free(sort);
-		free(return_sort);
+		free_exit(sort, NULL);
 		exit(1);
 	}
 	copy_value(lsta, sort);
@@ -77,11 +75,12 @@ int	find_third_infive(t_list *lsta, t_list *lstb)
 	while (i < 5 && lsta != NULL)
 	{
 		if (return_sort[i] == 3)
-			return (lsta->value);
+			break ;
 		i++;
 		lsta = lsta->next;
 	}
-	return (0);
+	double_free(sort, return_sort);
+	return (lsta->value);
 }
 
 t_list	*ft_sort_five(t_list *lsta, t_list *lstb)

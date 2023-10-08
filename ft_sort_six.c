@@ -6,7 +6,7 @@
 /*   By: sendo <sendo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:16:45 by sendo             #+#    #+#             */
-/*   Updated: 2023/09/25 12:29:17 by sendo            ###   ########.fr       */
+/*   Updated: 2023/10/08 13:22:13 by sendo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,10 @@ t_list	*ft_sort_six(t_list *lsta, t_list *lstb)
 	t_list	*ptr;
 
 	while (lsta->next != NULL && lsta->value != 6)
-	{
 		lsta = lsta->next;
-		ptr = lsta;
-	}
-	lsta = back_to_firstptr(ptr);
+	lsta = back_to_firstptr(lsta);
 	lstb = ft_send_half(lsta, lstb);
-	lsta = back_to_firstptr(ptr);
+	lsta = back_to_firstptr(lsta);
 	lsta = ft_sort_three(lsta, 1);
 	lstb = ft_sort_three(lstb, -1);
 	lstb = swapfirst(lstb, -1);
